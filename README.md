@@ -7,7 +7,7 @@ Added feature: Recommended job page, which recommends jobs based on previous app
 Added feature: Job interview tool which uses outside resources/listing to produce practice interview questions
 Added feature: email scanner or job site scanner to find info about active applications
 Basic Layout: Front end website, Back end to handle ai api calls, passing db data to front end, authentication, ect., and pull info from outside sources, and db for per user info.
-
+```
 ![This is a screenshot.](images.png)
 # How to run
 Provide here instructions on how to use your application.   
