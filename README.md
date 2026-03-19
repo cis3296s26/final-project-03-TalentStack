@@ -1,6 +1,11 @@
 # Project Name
 Put here a short paragraph describing your project. 
-Adding an screenshot or a mockup of your application in action would be nice.  
+Adding an screenshot or a mockup of your application in action would be nice. 
+Basic project overview - Website that compiles job application info from several popular sites (i.e. linkedin, indeed, handshake ect.). 
+Added feature: Recommended job page, which recommends jobs based on previous applications/user profile
+Added feature: Job interview tool which uses outside resources/listing to produce practice interview questions
+Added feature: email scanner or job site scanner to find info about active applications
+Basic Layout: Front end website, Back end to handle ai api calls, passing db data to front end, authentication, ect., and pull info from outside sources, and db for per user info.
 
 ![This is a screenshot.](images.png)
 # How to run
