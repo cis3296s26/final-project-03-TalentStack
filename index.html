@@ -5,24 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Scrum #1 Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
 
   <!--  HEADING / NAVBAR -->
   <body>
-    <header class="topbar">
-      <div class="topbar-left">
+    <header class="navbar">
+      <div class="navbar-left">
         <div class="logo">XX</div>
         <input type="text" placeholder="Search" class="search-bar">
       </div>
 
-      <nav class="topbar-nav">
+      <nav class="navbar-nav">
         <a href="#">Home</a>
         <a href="#">My Network</a>
         <a href="#">Jobs</a>
         <a href="#">Messaging</a>
         <a href="#">Notifications</a>
-        <a href="#">Profile</a> 
+
+        <div class="dropdown">
+          <button id="profileBtn" class="dropbtn">Profile <i class="fa fa-caret-down"></i></button>
+          <div id="profileMenu" class="dropdown-content">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#">Sign Out</a>
+          </div>
+        </div>
+
       </nav>
     </header>
 
@@ -94,6 +104,6 @@
     <!--  FOOTER -->
 
 
-    <script src="index.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>

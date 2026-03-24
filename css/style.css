@@ -16,7 +16,7 @@ body {
 
 /* || Header and Main Navigation */
 
-.topbar {
+.navbar {
   position: sticky;
   top: 0;
   z-index: 100;
@@ -26,9 +26,12 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
+  
+  /* Testing for dropdowns in NAV */
+  overflow: visible;
 }
 
-.topbar-left {
+.navbar-left {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -54,16 +57,84 @@ body {
   min-width: 240px;
 }
 
-.topbar-nav {
+.navbar-nav {
   display: flex;
   gap: 18px;
+  align-items: center;  
 }
 
-.topbar-nav a {
+.navbar-nav a {
   text-decoration: none;
   color: #444;
   font-size: 0.95rem;
 }
+
+/* Add a background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #eef3f8;
+  color: #0a66c2;
+}
+
+
+  /* Testing for dropdowns in NAV */
+.dropdown {
+  position: relative;
+}
+
+.dropdown .dropbtn {
+  font-size: 0.95rem;
+  border: none;
+  outline: none;
+  color: #444;
+  padding: 0;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+  cursor: pointer;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  margin-top: 8px;
+  right: 0;
+  
+  left: auto;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropbtn:hover,
+.dropbtn.active {
+  background-color: #eef3f8;
+  color: #0a66c2;
+}
+
+
+/* END DROPDOWN STYLING */
 
 .dashboard {
   max-width: 1200px;
@@ -155,13 +226,13 @@ body {
     order: 1;
   }
 
-  .topbar {
+  .navbar {
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
   }
 
-  .topbar-nav {
+  .navbar-nav {
     flex-wrap: wrap;
   }
 }
