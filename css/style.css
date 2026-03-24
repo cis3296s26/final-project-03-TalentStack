@@ -1,0 +1,175 @@
+/* || Typography */
+
+
+/* || General styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f2ef;
+  color: #222;
+}
+
+/* || Header and Main Navigation */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 38px;
+  height: 38px;
+  background: blue;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+}
+
+.search-bar {
+  padding: 10px 12px;
+  border: none;
+  background: #eef3f8;
+  border-radius: 8px;
+  min-width: 240px;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 18px;
+}
+
+.topbar-nav a {
+  text-decoration: none;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.dashboard {
+  max-width: 1200px;
+  margin: 24px auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  padding: 0 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  margin-bottom: 16px;
+}
+
+.profile-card {
+  text-align: center;
+  overflow: hidden;
+}
+
+.banner {
+  height: 70px;
+  background: linear-gradient(135deg, #0a66c2, #6fb1fc);
+  margin: -16px -16px 16px -16px;
+}
+
+.avatar,
+.small-avatar {
+  background: #cfd8dc;
+  border-radius: 50%;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  margin: -36px auto 12px;
+  border: 4px solid white;
+}
+
+.small-avatar {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.profile-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.profile-card p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.sidebar-stat {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.left-sidebar ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+
+.left-sidebar li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+
+@media (max-width: 1000px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .left-sidebar {
+    order: 2;
+  }
+
+  .feed {
+    order: 1;
+  }
+
+  .topbar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .topbar-nav {
+    flex-wrap: wrap;
+  }
+}
+
+
+
+
+
+
+
+/* || UTILITIES */
