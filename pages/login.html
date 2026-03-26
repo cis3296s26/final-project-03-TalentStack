@@ -24,7 +24,18 @@
             </section>
         </main>
 
-        <script></script>
+        <!-- TEMPORARY SCRIPT TO BYPASS LOGIN/BEFORE LOGIN SETUP TO GET TO THE DASHBOARD -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('authForm');
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    sessionStorage.setItem('mockLoggedIn', 'true');
+                    window.location.href = 'dashboard.html';
+                });
+            });
+        </script>
     </body>
 </html>
 
