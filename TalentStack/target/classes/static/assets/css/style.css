@@ -1,0 +1,437 @@
+/* || Typography */
+:root {
+--primary-color: #709775;
+--secondary-color: #CFE0C3;
+--dark-green: #23231A;
+--light-blue: #8FABAF;
+--blue: #4F759B;
+--grape: #6C698D;
+}
+
+
+/* || General styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f2ef;
+  color: #222;
+}
+
+/* || LANDING PAGE */
+.landing-page {
+  width: 100%;
+}
+
+.landing-banner {
+  min-height: calc(100vh - 71px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+
+  background: url("../resources/background1.jpg") center/cover no-repeat;
+}
+
+.banner-content {
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+  z-index: 2;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  backdrop-filter: blur(3px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.banner h1 {
+  font-size: 4rem;
+  margin-bottom: 16px;
+}
+
+.landing-banner p {
+  max-width: 700px;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.primary-btn {
+  display: inline-block;
+  background: white;
+  color: #0a66c2;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 14px 26px;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+.primary-btn:hover {
+  background: #eef3f8;
+  transform: translateY(-1px);
+}
+
+.landing-section {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.landing-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.landing-section p,
+.landing-section li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.feature-list {
+  padding-left: 20px;
+}
+
+.feature-list li {
+  margin-bottom: 8px;
+}
+
+/* || Login.html CSS for login form */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.auth-card h1 {
+  font-size: 2.2rem;
+  margin-bottom: 24px;
+  color: #222;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-card input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  font-size: 1rem;
+  border: 1px solid #cfd8dc;
+  border-radius: 10px;
+  outline: none;
+  background: #fafafa;
+}
+
+.auth-card input:focus {
+  border-color: #0a66c2;
+  background: white;
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.auth-card button:hover {
+  background: #004182;
+  transform: translateY(-1px);
+}
+
+#toggleText {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.98rem;
+  color: #555;
+}
+
+#toggleMode {
+  color: var(--primary-color);
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+#toggleMode:hover {
+  text-decoration: underline;
+}
+
+
+
+/* || Header and Main Navigation */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  
+  /* Testing for dropdowns in NAV */
+  overflow: visible;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 38px;
+  height: 38px;
+  background: var(--primary-color);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+}
+
+.search-bar {
+  padding: 10px 12px;
+  border: none;
+  background: #eef3f8;
+  border-radius: 8px;
+  min-width: 240px;
+}
+
+.navbar-nav {
+  display: flex;
+  gap: 18px;
+  align-items: center;  
+}
+
+.navbar-nav a {
+  text-decoration: none;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* Add a background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #eef3f8;
+  color: var(--primary-color);
+}
+
+
+  /* Testing for dropdowns in NAV */
+.dropdown {
+  position: relative;
+}
+
+.dropdown .dropbtn {
+  font-size: 0.95rem;
+  border: none;
+  outline: none;
+  color: #444;
+  padding: 0;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+  cursor: pointer;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  margin-top: 8px;
+  right: 0;
+  
+  left: auto;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropbtn:hover,
+.dropbtn.active {
+  background-color: #eef3f8;
+  color: #0a66c2;
+}
+
+
+/* END DROPDOWN STYLING */
+
+.dashboard {
+  max-width: 1200px;
+  margin: 24px auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 20px;
+  padding: 0 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  margin-bottom: 16px;
+}
+
+.profile-card {
+  text-align: center;
+  overflow: hidden;
+}
+
+.banner {
+  height: 70px;
+  background: linear-gradient(135deg, #0a66c2, #6fb1fc);
+  margin: -16px -16px 16px -16px;
+}
+
+.avatar,
+.small-avatar {
+  background: #cfd8dc;
+  border-radius: 50%;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  margin: -36px auto 12px;
+  border: 4px solid white;
+}
+
+.small-avatar {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.profile-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.profile-card p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.sidebar-stat {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+
+.left-sidebar ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+
+.left-sidebar li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+
+@media (max-width: 1000px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .left-sidebar {
+    display: none;
+    visibility: hidden;
+  }
+
+
+  .navbar {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .navbar-nav {
+    flex-wrap: wrap;
+  }
+}
+
+
+
+
+/* DASHBOARD.html */
+.page-header {
+  grid-column: 1 / -1;
+  margin-bottom: 10px;
+}
+
+.page-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+
+
+
+/* || UTILITIES */
