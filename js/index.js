@@ -57,6 +57,20 @@ document.addEventListener('DOMContentLoaded', () =>{
             profilePic.src = '../resources/defaultProfilePic.jpg';
             localStorage.removeItem('profilePic');
         }
+
+        // save basic information
+        function saveBasicInfo(){
+            const info = {
+                name: document.getElementById('fullName').value,
+                status: document.getElementById('status').value,
+                location: document.getElementById('location').value
+            };
+            localStorage.setItem('profileInfo', JSON.stringify(info));
+            alert('Profile Saved!');
+        }
+
+        // add tags & sections
+        // TBD
     }
 });
 

@@ -53,14 +53,18 @@
     </div>
 
     <div class="profile-container">
-      <!-- Profile Picture Upload/Display -->
       <h2>Profile Picture</h2>
+      <!-- Profile Picture Upload/Display -->
       <div class="profile-picture-section">
         <img id="profilePicture" src="../resources/defaultProfilePic.jpg" alt="Profile Picture"
              class="profile-img">
         <input type="file" id="picUpload" accept="image/*" style="display: none;">
-        <button onclick="document.getElementById('picUpload').click()">Change Picture</button>
-        <button onclick="resetPic()">Reset to Default</button>
+        <div style="margin: 20px 0;">
+          <button class="primary-btn bubbly-btn"
+                  onclick="document.getElementById('picUpload').click()">Change Picture</button>
+          <button class="primary-btn bubbly-btn secondary"
+                  onclick="resetPic()">Reset to Default</button>
+        </div>
       </div>
     </div>
 
@@ -79,19 +83,18 @@
       <label for="location">Location: </label>
       <input type="text" id="location" placeholder="City, State", value="Pittsburg, Pennsylvania">
 
-      <button onclick="saveBasicInfo()">Save Information</button>
+      <button class="primary-btn bubbly-btn" onclick="saveBasicInfo()">Save Information</button>
     </div>
 
     <!-- Tags/Sections -->
     <div class="tags-section">
       <h2>Skills & Sections</h2>
-      <button onclick="addTag()">Add Tag</button>
+      <button class="primary-btn bubbly-btn" onclick="addTag()">Add Tag</button>
       <!-- TBD-->
     </div>
   </main>
 
   <!-- JS -->
   <script src="../js/index.js"></script>
-
 </body>
 </html>
