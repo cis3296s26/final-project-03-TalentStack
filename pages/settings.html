@@ -51,6 +51,34 @@
     <div class="page-header">
       <h1>Account Settings</h1>
     </div>
+
+    <div class="profile-container">
+      <!-- Profile Picture Upload/Display -->
+      <div class="profile-picture-section">
+        <img id="profilePicture" src="../resources/defaultProfilePic.jpg" alt="Profile Picture"
+             class="profile-img">
+        <input type="file" id="picUpload" accept="image/*" style="display: none;">
+        <button onclick="document.getElementById('picUpload').click()">Change Picture</button>
+        <button onclick="resetPic()">Reset to Default</button>
+      </div>
+    </div>
+
+    <!-- Basic Information Form -->
+    <div class="basic-info">
+      <label for="fullName">Full Name: </label>
+      <input type ="text" id="fullName" placeholder="Enter your full name" value="John Smith">
+
+      <label for="status">Status: </label>
+      <select id="status">
+        <option value="student">Student</option>
+        <option value="graduate">Graduate</option>
+      </select>
+
+      <label for="location">Location: </label>
+      <input type="text" id="location" placeholder="City, State", value="Pittsburg, Pennsylvania">
+
+      <button onclick="saveBasicInfo()">Save Information</button>
+    </div>
   </main>
 
   <!-- JS -->
