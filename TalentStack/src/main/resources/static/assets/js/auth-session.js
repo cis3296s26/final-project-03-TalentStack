@@ -1,20 +1,26 @@
 (function () {
     //store path for login to redirect here if the session is expired
-    const LOGIN_ROUTE = '/login';
+    const LOGIN_ROUTE = '/assets/pages/login.html';
 
     //main reusable wrapper function. accepts a url and optional option object
     async function request(url, options = {}) {
+        const headers = {
+                    ...(options.headers || {})
+                };
+
+                const isFormData = options.body instanceof FormData;
+
+                if (!isFormData && !headers['Content-Type']) {
+                    headers['Content-Type'] = 'application/json';
+                }
+
         const response = await fetch(url, {
             //tells browser to include cookies with request for session authentication
             credentials: 'include',
-            headers: {
-                //request body is json
-                'Content-Type': 'application/json',
-                //merge in extra headers from the caller
-                ...(options.headers || {})
-            },
-            ...options
+            ...options,
+            headers
         });
+
 
         //read content-type header. if not present use an empty string
         const contentType = response.headers.get('content-type') || '';
@@ -30,7 +36,7 @@
             ? 'Your session has expired. Please log in again.'
             : 'Request failed.';
             //if the status is returned with an error in the payload json body, return the error
-            const message = payload?.error || fallback;
+            const message = payload?.error || payload?.message || fallback;
             const error = new Error(message);
             error.status = response.status;
             error.payload = payload;
@@ -40,25 +46,26 @@
         return payload;
     }
 
-    //check if the current user has a valid session
-    async function ensureAuthenticated() {
-        try {
-            //try getting the backend endpoint and if it succeeds then the user is logged in and validated
-            await request('/api/me', { method: 'GET' });
-            return true;
-        } catch (error) {
-        //if the error is 401 redirect the browser to the login page and flag as not authenticated
+function redirectToLogin() {
+    window.location.href = LOGIN_ROUTE;
+}
+
+async function ensureAuthenticated() {
+    try {
+        await request('/api/profile', { method: 'GET' });
+        return true;
+    } catch (error) {
         if (error.status === 401) {
-            window.location.href = LOGIN_ROUTE;
+            redirectToLogin();
             return false;
         }
-        //if the error is not a 401 rethrow the error so it can be handled
-        throw error;
+    throw error;
     }
 }
     //attach the two above functions to the shared client object for the apis to use
     window.ApiClient = {
         request,
+        redirectToLogin,
         ensureAuthenticated
     };
 })();

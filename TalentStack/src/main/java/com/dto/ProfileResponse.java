@@ -15,5 +15,13 @@ public record ProfileResponse(
         String email,
         LocalDateTime createdAt,
         String firstName,
-        String lastName
+        String lastName,
+        Integer age,
+        String keyWords,
+        String location,
+        Integer distance,
+        Integer salaryMin,
+        Integer salaryMax,
+        String contractType,
+        Integer maxDaysOld
 ) {}

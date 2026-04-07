@@ -1,49 +1,66 @@
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
     const dropdowns = document.querySelectorAll('.dropdown');
 
-
-    dropdowns.forEach(dropdown => {
+    dropdowns.forEach((dropdown) => {
         const btn = dropdown.querySelector('.dropbtn');
         const menu = dropdown.querySelector('.dropdown-content');
 
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
+        if (!btn || !menu) return;
 
-            // close all other dropdowns (to fix where they're both open)
-            dropdowns.forEach(d => {
-                const m = d.querySelector('.dropdown-content');
-                if (m !== menu) {
-                    m.classList.remove('show');
-                }   
+        btn.addEventListener('click', (event) => {
+            event.stopPropagation();
+
+            dropdowns.forEach((d) => {
+                const current = d.querySelector('.dropdown-content');
+                if (current && current !== menu) {
+                    current.classList.remove('show');
+                }
             });
 
-            // toggle current one selected
             menu.classList.toggle('show');
         });
     });
 
-    // close all dropdowns when clicked outside (elsewhere on page)
     document.addEventListener('click', () => {
-        dropdowns.forEach(d => {
-        d.querySelector('.dropdown-content').classList.remove('show');
-        });
-    });
-});
-
-const profileForm = document.getElementById('profileForm');
-    //detects whether the page has a profile form and calls loadprofile()
-    if (profileForm && typeof window.loadProfile === 'function') {
-        await window.loadProfile();
-
-        //hooks the form submit to saveprofile() for editing profile page
-        profileForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (typeof window.saveProfile === 'function') {
-                await window.saveProfile();
+        dropdowns.forEach((dropdown) => {
+            const menu = dropdown.querySelector('.dropdown-content');
+            if (menu) {
+                menu.classList.remove('show');
             }
         });
+    });
+
+    const saveBtn = document.getElementById('saveProfileButton');
+    if (saveBtn && window.ProfileApi && window.loadProfile && window.saveProfile) {
+        window.loadProfile();
+        saveBtn.addEventListener('click', () => {
+            window.saveProfile();
+        });
+    }
+
+    if (document.getElementById('displayEmail') && window.ProfileApi) {
+        window.ProfileApi.getProfile()
+            .then((profile) => {
+                const email = document.getElementById('displayEmail');
+                const firstName = document.getElementById('displayFirstName');
+                const lastName = document.getElementById('displayLastName');
+                const createdAt = document.getElementById('displayCreatedAt');
+                const status = document.getElementById('profileStatus');
+
+                if (email) email.textContent = profile.email || 'Not Set';
+                if (firstName) firstName.textContent = profile.firstName || 'Not Set';
+                if (lastName) lastName.textContent = profile.lastName || 'Not Set';
+                if (createdAt) {
+                    createdAt.textContent = profile.createdAt
+                        ? new Date(profile.createdAt).toLocaleString()
+                        : 'Unavailable';
+                }
+
+                if (status) status.textContent = 'Profile loaded.';
+            })
+            .catch((error) => {
+                const status = document.getElementById('profileStatus');
+                if (status) status.textContent = error.message;
+            });
     }
 });
-
-
-

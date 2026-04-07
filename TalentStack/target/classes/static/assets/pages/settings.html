@@ -1,59 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Profile</title>
-
-  <!-- CSS (go up one level) -->
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
-
 <body>
 
-  <!--  NAVBAR (same on every page) -->
-  <header class="navbar">
+<header class="navbar">
     <div class="navbar-left">
-      <a href="../TalentStack/src/main/resources/static/index.html">
-        <div class="logo">TS</div>
-      </a>
-      <input type="text" placeholder="Search" class="search-bar">
+        <a href="/"><div class="logo">TS</div></a>
+        <input type="text" placeholder="Search" class="search-bar">
     </div>
 
     <nav class="navbar-nav">
-      <a href="dashboard.html">My Dashboard</a>
-      <a href="jobs.html">Browse Jobs</a>
-
-      <div class="dropdown">
-        <button class="dropbtn">Career Prep ▾</button>
-        <div class="dropdown-content">
-          <a href="dashboard.html">Application Status</a>
-          <a href="dashboard.html">Interview Prep</a>
-          <a href="dashboard.html">Calendar</a>
-        </div>
-      </div>
-
-      <a href="messages.html">Messaging</a>
-      <a href="notifications.html">Notifications</a>
-
-      <div class="dropdown">
-        <button class="dropbtn">Profile ▾</button>
-        <div class="dropdown-content">
-          <a href="profile.html">Profile</a>
-          <a href="settings.html">Settings</a>
-          <a href="#">Sign Out</a>
-        </div>
-      </div>
+        <a href="/assets/pages/dashboard.html">My Dashboard</a>
+        <a href="/assets/pages/jobs.html">Browse Jobs</a>
+        <a href="/assets/pages/messages.html">Messaging</a>
+        <a href="/assets/pages/notifications.html">Notifications</a>
+        <a href="/assets/pages/profile.html">Profile</a>
     </nav>
-  </header>
+</header>
 
-  <!-- PAGE CONTENT -->
-  <main class="dashboard">
+<main class="dashboard">
     <div class="page-header">
-      <h1>Account Settings</h1>
+        <h1>Account Settings</h1>
     </div>
-  </main>
 
-  <!-- JS -->
-  <script src="../js/index.js"></script>
+    <div class="basic-info">
+        <h2>Basic Information</h2>
+
+        <label for="profileEmail">Email</label>
+        <input type="email" id="profileEmail" placeholder="Enter your email">
+
+        <label for="profileFirstName">First Name</label>
+        <input type="text" id="profileFirstName" placeholder="Enter your first name">
+
+        <label for="profileLastName">Last Name</label>
+        <input type="text" id="profileLastName" placeholder="Enter your last name">
+
+        <p><strong>Created:</strong> <span id="profileCreatedAt">Unavailable</span></p>
+        <p id="profileStatus" aria-live="polite"></p>
+
+        <button class="primary-btn bubbly-btn" id="saveProfileButton" type="button">Save Information</button>
+    </div>
+</main>
+
+<script src="/assets/js/auth-session.js"></script>
+<script src="/assets/js/profile-api.js"></script>
+<script src="/assets/js/settings-page.js"></script>
+<script src="/assets/js/nav.js"></script>
 </body>
 </html>

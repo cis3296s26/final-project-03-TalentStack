@@ -36,11 +36,32 @@
         });
     }
 
+    async function getSavedJobs() {
+            return client().request('/api/jobs/saved', { method: 'GET' });
+        }
+
+        async function saveJob(job) {
+            return client().request('/api/jobs/saved', {
+                method: 'POST',
+                body: JSON.stringify(job)
+            });
+        }
+
+        async function updateSavedJobStatus(savedJobId, applicationStatus) {
+            return client().request(`/api/jobs/saved/${savedJobId}/status`, {
+                method: 'PUT',
+                body: JSON.stringify({ applicationStatus })
+            });
+        }
+
     //make prior functions globally availible
     window.JobsApi = {
         getPreferences,
         savePreferences,
         getDashboardJobs,
-        searchJobs
+        searchJobs,
+        getSavedJobs,
+        saveJob,
+        updateSavedJobStatus
     };
 })();

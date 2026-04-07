@@ -35,6 +35,30 @@ public class UserProfile {
     @Column(name = "last_name", nullable = false, length = 80)
     private String lastName;
 
+    @Column(name = "age", nullable = false)
+    private Integer age;
+
+    @Column(name = "key_words", length = 45)
+    private String keyWords;
+
+    @Column(name = "location", length = 45)
+    private String location;
+
+    @Column(name = "distance")
+    private Integer distance;
+
+    @Column(name = "salary_min")
+    private Integer salaryMin;
+
+    @Column(name = "salary_max")
+    private Integer salaryMax;
+
+    @Column(name = "contract_type", length = 45)
+    private String contractType;
+
+    @Column(name = "max_days_old")
+    private Integer maxDaysOld;
+
     public Long getUserId() {
         return userId;
     }
@@ -51,6 +75,36 @@ public class UserProfile {
         return lastName;
     }
 
+    public Integer getAge() { return age;}
+
+    public String getKeyWords() {
+        return keyWords;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public Integer getDistance() {
+        return distance;
+    }
+
+    public Integer getSalaryMin() {
+        return salaryMin;
+    }
+
+    public Integer getSalaryMax() {
+        return salaryMax;
+    }
+
+    public String getContractType() {
+        return contractType;
+    }
+
+    public Integer getMaxDaysOld() {
+        return maxDaysOld;
+    }
+
     public void setUser(User user) {
         this.user = user;
     }
@@ -61,5 +115,35 @@ public class UserProfile {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setAge(Integer age) {this.age = age;}
+
+    public void setKeyWords(String keyWords) {
+        this.keyWords = keyWords;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setDistance(Integer distance) {
+        this.distance = distance;
+    }
+
+    public void setSalaryMin(Integer salaryMin) {
+        this.salaryMin = salaryMin;
+    }
+
+    public void setSalaryMax(Integer salaryMax) {
+        this.salaryMax = salaryMax;
+    }
+
+    public void setContractType(String contractType) {
+        this.contractType = contractType;
+    }
+
+    public void setMaxDaysOld(Integer maxDaysOld) {
+        this.maxDaysOld = maxDaysOld;
     }
 }

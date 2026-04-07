@@ -19,10 +19,10 @@ public class User{
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true, length = 45)
     private String email;
 
-    @Column(name = "password_hash", nullable = false)
+    @Column(name = "password_hash", nullable = false, length = 45)
     private String passwordHash;
 
     @Column(name = "created_at", insertable = false, updatable = false)

@@ -1,67 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Dashboard</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
 
-        <!-- CSS (go up one level) -->
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <div class="form-header">
+            <p>Please enter your details</p>
+            <h1 id="formTitle">Welcome Back</h1>
+        </div>
 
-    <body>
-        <main class="auth-page">
-            <section class="auth-card">
-                <h1 id="formTitle">Sign In</h1>
+        <form class="form-box" id="loginForm">
+            <div class="input-group">
+                <input type="email" id="email" name="email" class="input-field" required>
+                <label for="email" class="floating-label">Email Address</label>
+            </div>
 
-                <form id="authForm">
-                    <input type="email" id="email" placeholder="Email" required>
-                    <input type="password" id="password" placeholder="Password" required>
+            <div class="input-group">
+                <input type="password" id="password" name="password" class="input-field" required>
+                <label for="password" class="floating-label">Password</label>
 
-                    <button type="submit" id="submitBtn">Sign In</button>
-                </form>
+                <button
+                        type="button"
+                        class="eye-icon password-toggle"
+                        data-target="password"
+                        aria-label="Toggle password visibility">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye">
+                        <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </button>
+            </div>
 
-                <p id="toggleText">Don’t have an account?<span id="toggleMode">Register</span></p>
-            </section>
-        </main>
+            <div class="input-group checkbox-group">
+                <div class="form col remember-me">
+                    <input type="checkbox" id="remember-me-checkbox" class="checkbox-field">
+                    <label for="remember-me-checkbox">Remember me</label>
+                </div>
+                <div class="form-col">
+                    <a href="#" class="form-link">Forgot Password?</a>
+                </div>
+            </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const form = document.getElementById('authForm');
-                const status = document.getElementById('authStatus');
+            <p id="authStatus" aria-live="polite"></p>
 
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault();
+            <button type="submit" class="form-btn form-btn--submit">Sign In</button>
+        </form>
 
-                    const payload = {
-                        email: document.getElementById('email').value.trim(),
-                        password: document.getElementById('password').value
-                    };
+        <div class="form-divider">
+            <p>Or</p>
+        </div>
 
-                    ry {
-            status.textContent = 'Signing in...';
+        <div class="form-bottom">
+            <div class="form-socials">
+                <button type="button" class="form-btn form-btn--social">
+                    <img src="/assets/resources/images.png" class="btn-icon" alt="social icon">
+                </button>
+                <button type="button" class="form-btn form-btn--social">
+                    <img src="/assets/resources/images.png" class="btn-icon" alt="social icon">
+                </button>
+                <button type="button" class="form-btn form-btn--social">
+                    <img src="/assets/resources/images.png" class="btn-icon" alt="social icon">
+                </button>
+            </div>
+            <p>Don't have an account? <a href="/assets/pages/register.html" class="form-link">Sign up</a></p>
+        </div>
+    </div>
+</div>
 
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
-
-            if (!response.ok) {
-                throw new Error('Login failed.');
-            }
-
-            window.location.href = '/pages/dashboard.html';
-        } catch (error) {
-            status.textContent = error.message;
-            console.error(error);
-        }
-    });
-});
-        </script>
-    </body>
+<script src="/assets/js/auth-session.js"></script>
+<script src="/assets/js/auth-api.js"></script>
+<script src="/assets/js/auth-page.js"></script>
+</body>
 </html>
-
-
