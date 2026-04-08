@@ -199,5 +199,7 @@ loginBtn.addEventListener('click', viewLogin);
 fluid.addEventListener('animationend', () => {
     fluid.classList.remove("fluid-animate");
 })
+// FOR REGISTER REDIRECT TO PREFERENCES
+
 
 
