@@ -1,3 +1,12 @@
+// APPLY DARK MODE
+window.addEventListener("load", () => {
+  const savedMode = localStorage.getItem("darkMode");
+
+  if (savedMode === "on") {
+    document.body.classList.add("dark-mode");
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () =>{
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -200,6 +209,5 @@ fluid.addEventListener('animationend', () => {
     fluid.classList.remove("fluid-animate");
 })
 // FOR REGISTER REDIRECT TO PREFERENCES
-
 
 
