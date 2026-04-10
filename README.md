@@ -7,11 +7,14 @@ TalentStack is an AI-powered web-application that help individuals take the righ
 Features of TalentStack:
 - User Account Creation: Each user is able to create an account to save their progress with their uploaded resume, active applications, and generated mock interviews.
   -> (TBD) Email Scanner: Using the email a user inputs to their profile, other job-search sites are scanned for any current active applications this user may have.
+- User Profile Page: Allows users to view profiles and the chosen information an account user chooses to display on their account.
+- Settings Page: Users are able to edit their Personal, General, Display, and Account Preferences.
 - Reccomend Job Page: Taking a user's resume, TalentStack will search for the best-matched job descriptions given an individual's education, experience, and skills.
 - Job Interview Preparation Tool: As preparation for job interviews can be nervewracking, TalentStack provides a feature to create a mock interview using AI generating questions, answers, and other important key ideas to know in advance.
+- Notifications: User's will be alerted for connections, job matches, mentions, and suggestions.
 
 Basic Layout:
-Front end handles the website, Back end handles ai api calls, passing db data to front end, authentication, ect., and pull info from outside sources, and db for per user info.
+Front end handles the website and design. Back end handles ai api calls, passing database data to front end, authentication, ect., and pull info from outside sources, and db for per user info.
 ```
 ![This is a screenshot.](images.png)
 # How to run 
