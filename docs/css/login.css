@@ -118,7 +118,7 @@ body {
 }
 
 .input-field:focus ~ .floating-label,
-.input-field:not(:placeholder-shown) ~ .floating-label {
+.input-field:not(select):not(:placeholder-shown) ~ .floating-label {
     top: 0;
     left: 8px;
     transform: translateY(-50%);
@@ -135,8 +135,17 @@ body {
     color: var(--color-floating-label);
 }
 
+
+.input-group select ~ .floating-label {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 15px;
+    color: var(--color-placeholder);
+
+}
+
 .input-group select:focus ~ .floating-label,
-.input-group select:not([value=""]) ~ .floating-label {
+.input-group:has(select option:checked:not([value=""])) .floating-label {
     top: 0;
     left: 8px;
     transform: translateY(-50%);
@@ -292,27 +301,35 @@ body {
 
 /* || STYLING FOR PREFERENCES PAGE (SOLELY) */
 
-
 select.input-field {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 
-    background-color: var(--color-background);
-    border: none;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
     border-radius: 6px;
     padding: 14px 12px;
     font-size: 0.95rem;
     width: 100%;
     cursor: pointer;
+    color: var(--color-placeholder);
 }
-select.input-field:focus + .floating-label,
-select.input-field:not([value=""]) + .floating-label {
-    top: -8px;
-    left: 8px;
-    font-size: 0.75rem;
-    color: var(--color-primary-hover);
+
+select.input-field:not([value=""]) {
+    color: var(--color-text);
 }
+
+
+.input-group .select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-placeholder);
+}
+
 
 .secondary-btn {
   width: 100%;
@@ -331,22 +348,107 @@ select.input-field:not([value=""]) + .floating-label {
 }
 
 .secondary-btn:hover {
-  background-color: #f3f3f3;
+  background-color: var(--color-social-hover);
 }
 
+
 .form-subtext {
-    margin-top: 8px;
-    margin-bottom: 0;
-    font-size: 0.92rem;
+    font-size: 0.8rem;
     color: var(--color-placeholder);
-    line-height: 1.4;
+    line-height: 1.45;
 }
 
 .preferences-container .form-box {
-    gap: 40x;
+    gap: 22px;
 }
 
 .preferences-container .form-box {
     margin-top: 30px; 
 }
+
+.preferences-container .input-field,
+.preferences-container select.input-field {
+    height: 48px;
+}
+
+.preferences-container .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.preferences-container .button-group,
+.preferences-container .form-actions {
+    margin-top: 8px;
+}
+
+.check-group-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 12px 14px;
+}
+
+.check-group-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-floating-label);
+}
+
+.check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.check-option {
+    position: relative;
+    cursor: pointer;
+}
+
+.check-option input {
+   display: none;
+}
+
+.check-option span {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.check-option:hover span {
+    border-color: var(--color-primary);
+    background-color: var(--color-white);
+}
+
+.check-option input:checked + span {
+    background-color: var(--color-green-tint);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.check-option input:focus + span {
+    outline: 2px solid rgba(104, 145, 108, 0.2);
+}
+
+.check-group-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
 
