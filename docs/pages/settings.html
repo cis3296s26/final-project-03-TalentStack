@@ -166,14 +166,8 @@
   }
 
   window.addEventListener("load", () => {
-    const savedMode = localStorage.getItem("darkMode");
-
-    if (savedMode === "on") {
-      document.body.classList.add("dark-mode");
-      updateDarkStatus("on");
-    } else {
-      updateDarkStatus("off");
-    }
+    const savedMode = localStorage.getItem("darkMode") === "on";
+    applyDarkMode(savedMode);
   });
 
   let currentModal = null;
