@@ -1,4 +1,4 @@
-package com.talentstack.api.config;
+package com.talentstack.api;
 
 /**
  * TalentStackApiApplication is the Spring Boot entry point for the API service.
