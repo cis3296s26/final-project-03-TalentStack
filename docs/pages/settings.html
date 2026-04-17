@@ -60,10 +60,13 @@
     <!-- PERSONAL -->
     <div class="card">
       <div class="card-header">
-        <span class="card-title">Personal Information</span>
+        <span class="card-title">Personal Information & Demographics</span>
         <button class="card-edit" onclick="openModal('demographics')">Edit</button>
       </div>
-      <p class="about-text">Manage your demographic information (optional).</p>
+      <div class="about-text">
+        <p><strong>Gender:</strong> <span id="displayGender">Not set</span></p>
+        <p><strong>Race/Ethnicity:</strong> <span id="displayRaces">None</span></p>
+      </div>
     </div>
 
     <!-- GENERAL -->
@@ -165,8 +168,10 @@
     if (status) status.textContent = mode === "on" ? "ON" : "OFF";
   }
 
-  /* LOAD DARK MODE ON STARTUP */
+  /* LOAD SAVED INFO & DARK MODE ON STARTUP */
   window.addEventListener("load", () => {
+    loadDemographicsDisplay();
+
     const savedMode = localStorage.getItem("darkMode") === "on";
     applyDarkMode(savedMode);
   });
@@ -225,16 +230,24 @@
         </div>
         <div class="form-group">
           <label class="form-label">Race & Ethnicity (select all that apply)</label>
-          <div id="raceCheckboxes" style="max-height:200px;overflow-y:auto;padding:8px;border:1px solid #ddd;border-radius:6px;background:#f9f9f9;"></div>
-          <small style="color:#666;display:block;margin-top:4px;">Hold Ctrl/Cmd to select multiple</small>
+          <div id="raceCheckboxes" class="checkbox-container"></div>
+          <small style="color:#666;display:block;margin-top:4px;">Select Multiple if Necessary</small>
         </div>
       `,
       save: () => {
         const gender = document.getElementById("genderSelect").value;
-        const selectedRaces = Array.from(document.querySelectorAll('#raceCheckboxes input:checked')).map(cb => cb.value);
+        const selectedRaces = Array.from(
+          document.querySelectorAll('#raceCheckboxes input:checked')
+        ).map(cb => cb.value);
+
         localStorage.setItem('demographics.gender', gender);
         localStorage.setItem('demographics.races', JSON.stringify(selectedRaces));
-        alert(`Saved: ${gender || 'No gender'} | Races: ${selectedRaces.length ? selectedRaces.join(', ') : 'None'}`);
+
+        loadDemographicsDisplay();
+
+        alert(`Saved: ${gender || 'No gender'} | Races: ${
+          selectedRaces.length ? selectedRaces.join(', ') : 'None'
+        }`);
       }
     },
 
@@ -334,6 +347,17 @@
       const dropdown = document.getElementById("darkToggle");
       if (dropdown) dropdown.value = (savedMode === "on") ? "on" : "off";
     }
+  }
+
+  function loadDemographicsDisplay() {
+    const gender = localStorage.getItem('demographics.gender') || '';
+    const races = JSON.parse(localStorage.getItem('demographics.races') || '[]');
+
+    document.getElementById("displayGender").textContent =
+      gender || "Prefer not to say";
+
+    document.getElementById("displayRaces").textContent =
+      races.length ? races.join(", ") : "None";
   }
 
   function closeModal(){
