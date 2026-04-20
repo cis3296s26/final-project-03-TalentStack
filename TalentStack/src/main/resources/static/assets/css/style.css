@@ -375,13 +375,13 @@ body {
 /* END DROPDOWN STYLING */
 
 .dashboard {
-  max-width: 1200px;
-  margin: 24px auto;
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 20px;
-  padding: 0 16px;
+    display: block;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    grid-template-columns: unset;
 }
+
 
 .card {
   background: white;
