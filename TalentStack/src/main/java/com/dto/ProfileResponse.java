@@ -23,5 +23,12 @@ public record ProfileResponse(
         Integer salaryMin,
         Integer salaryMax,
         String contractType,
-        Integer maxDaysOld
+        Integer maxDaysOld,
+        Integer profileStrength,
+        String about,
+        String skills,
+        String tagline,
+        Integer applicationsNum,
+        Integer interviewsNum,
+        String profilePhotoBase64
 ) {}

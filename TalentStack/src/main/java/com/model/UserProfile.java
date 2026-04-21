@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Lob;
 
 @Entity
 @Table(name = "user_profiles")
@@ -58,6 +59,28 @@ public class UserProfile {
 
     @Column(name = "max_days_old")
     private Integer maxDaysOld;
+
+    @Column(name = "profile_strength")
+    private Integer profileStrength;
+
+    @Column(name = "about", length = 500)
+    private String about;
+
+    @Column(name = "skills", length = 500)
+    private String skills;
+
+    @Column(name = "tagline", length = 45)
+    private String tagline;
+
+    @Column(name = "applications_num")
+    private Integer applicationsNum;
+
+    @Column(name = "interviews_num")
+    private Integer interviewsNum;
+
+    @Lob
+    @Column(name = "profile_photo", columnDefinition = "MEDIUMBLOB")
+    private byte[] profilePhoto;
 
     public Long getUserId() {
         return userId;
@@ -105,6 +128,20 @@ public class UserProfile {
         return maxDaysOld;
     }
 
+    public Integer getProfileStrength() {return profileStrength;}
+
+    public String getAbout() {return about;}
+
+    public String getSkills() {return skills;}
+
+    public String getTagline() {return tagline;}
+
+    public Integer getApplicationsNum() {return applicationsNum;}
+
+    public Integer getInterviewsNum() {return interviewsNum;}
+
+    public byte[] getProfilePhoto() {return profilePhoto;}
+
     public void setUser(User user) {
         this.user = user;
     }
@@ -146,4 +183,18 @@ public class UserProfile {
     public void setMaxDaysOld(Integer maxDaysOld) {
         this.maxDaysOld = maxDaysOld;
     }
+
+    public  void setProfileStrength(Integer profileStrength) {this.profileStrength = profileStrength;}
+
+    public void setAbout(String about) {this.about = about;}
+
+    public void setSkills(String skills) {this.skills = skills;}
+
+    public void setTagline(String tagline) {this.tagline = tagline;}
+
+    public void setApplicationsNum(Integer applicationsNum) {this.applicationsNum = applicationsNum;}
+
+    public void setInterviewsNum(Integer interviewsNum) {this.interviewsNum = interviewsNum;}
+
+    public void setProfilePhoto(byte[] profilePhoto) {this.profilePhoto = profilePhoto;}
 }

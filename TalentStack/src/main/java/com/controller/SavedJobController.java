@@ -3,6 +3,8 @@ package com.talentstack.api.controller;
 import com.talentstack.api.dto.SaveJobRequest;
 import com.talentstack.api.dto.SavedJobResponse;
 import com.talentstack.api.dto.UpdateApplicationStatusRequest;
+import com.talentstack.api.dto.UpdateInterviewDateRequest;
+import com.talentstack.api.dto.CalendarEventResponse;
 import com.talentstack.api.service.SavedJobService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +60,28 @@ public class SavedJobController {
         return ResponseEntity.ok(
                 savedJobService.updateApplicationStatus(userId, savedJobId, request.applicationStatus())
         );
+    }
+    @PutMapping("/{savedJobId}/interview")
+    public ResponseEntity<SavedJobResponse> updateInterviewDate(
+            @PathVariable Long savedJobId,
+            @Valid @RequestBody UpdateInterviewDateRequest request,
+            Authentication authentication
+    ) {
+        Long userId = AuthenticatedUser.resolveUserId(authentication);
+        if (userId == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        return ResponseEntity.ok(savedJobService.updateInterviewDate(userId, savedJobId, request.interviewAt()));
+    }
+
+    @GetMapping("/calendar")
+    public ResponseEntity<List<CalendarEventResponse>> getCalendarEvents(Authentication authentication) {
+        Long userId = AuthenticatedUser.resolveUserId(authentication);
+        if (userId == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        return ResponseEntity.ok(savedJobService.getCalendarEvents(userId));
     }
 }

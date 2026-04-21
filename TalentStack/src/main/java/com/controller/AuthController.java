@@ -1,6 +1,8 @@
 package com.talentstack.api.controller;
 
 // Request DTOs for login and signup
+
+import com.talentstack.api.dto.ChangePasswordRequest;
 import com.talentstack.api.dto.LoginRequest;
 import com.talentstack.api.dto.SignupRequest;
 
@@ -78,6 +80,20 @@ public class AuthController {
         session.invalidate();
 
         // Returns HTTP 200 OK
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/password")
+    public ResponseEntity<Void> changePassword(
+            @Valid @RequestBody ChangePasswordRequest req,
+            Authentication authentication
+    ) {
+        Long userId = AuthenticatedUser.resolveUserId(authentication);
+        if (userId == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        authService.changePassword(userId, req);
         return ResponseEntity.ok().build();
     }
 

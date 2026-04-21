@@ -46,10 +46,19 @@ public class SavedJob {
     @Column(name = "saved_at", nullable = false)
     private LocalDateTime savedAt;
 
+    @Column(name = "status_updated_at")
+    private LocalDateTime statusUpdatedAt;
+
+    @Column(name = "interview_at")
+    private LocalDateTime interviewAt;
+
     @PrePersist
     void onCreate() {
         if (savedAt == null) {
             savedAt = LocalDateTime.now();
+        }
+        if (statusUpdatedAt == null) {
+            statusUpdatedAt = savedAt;
         }
     }
 
@@ -93,6 +102,10 @@ public class SavedJob {
         return savedAt;
     }
 
+    public LocalDateTime getStatusUpdatedAt() {return statusUpdatedAt;}
+
+    public LocalDateTime getInterviewAt() {return interviewAt;}
+
     public void setUser(User user) {
         this.user = user;
     }
@@ -124,4 +137,8 @@ public class SavedJob {
     public void setApplicationStatus(String applicationStatus) {
         this.applicationStatus = applicationStatus;
     }
+
+    public void setStatusUpdatedAt(LocalDateTime statusUpdatedAt) {this.statusUpdatedAt = statusUpdatedAt;}
+
+    public void setInterviewAt(LocalDateTime interviewAt) {this.interviewAt = interviewAt;}
 }

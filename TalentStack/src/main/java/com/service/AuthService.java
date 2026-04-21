@@ -1,6 +1,7 @@
 package com.talentstack.api.service;
 
 import com.talentstack.api.dto.LoginRequest;
+import com.talentstack.api.dto.ChangePasswordRequest;
 import com.talentstack.api.dto.SignupRequest;
 import com.talentstack.api.model.User;
 import com.talentstack.api.model.UserProfile;
@@ -56,5 +57,22 @@ public class AuthService {
         }
 
         return u.getUserId();
+    }
+
+    @Transactional
+    public void changePassword(Long userId, ChangePasswordRequest req) {
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + userId));
+
+        if (!encoder.matches(req.oldPassword(), user.getPasswordHash())) {
+            throw new RuntimeException("Current password is incorrect");
+        }
+
+        if (req.oldPassword().equals(req.newPassword())) {
+            throw new IllegalArgumentException("New password must be different from the current password");
+        }
+
+        user.setPasswordHash(encoder.encode(req.newPassword()));
+        userRepo.save(user);
     }
 }

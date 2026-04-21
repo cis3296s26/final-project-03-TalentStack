@@ -1,5 +1,6 @@
 package com.talentstack.api.service;
 
+import com.talentstack.api.dto.CalendarEventResponse;
 import com.talentstack.api.dto.SaveJobRequest;
 import com.talentstack.api.dto.SavedJobResponse;
 import com.talentstack.api.model.SavedJob;
@@ -9,7 +10,11 @@ import com.talentstack.api.repo.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SavedJobService {
@@ -44,7 +49,7 @@ public class SavedJobService {
         if (request.applicationStatus() != null && !request.applicationStatus().isBlank()) {
             savedJob.setApplicationStatus(request.applicationStatus().trim());
         }
-
+        savedJob.setStatusUpdatedAt(LocalDateTime.now());
         SavedJob persisted = savedJobRepository.save(savedJob);
         return toResponse(persisted);
     }
@@ -66,7 +71,65 @@ public class SavedJobService {
         }
 
         savedJob.setApplicationStatus(applicationStatus.trim());
+        savedJob.setStatusUpdatedAt(LocalDateTime.now());
         return toResponse(savedJobRepository.save(savedJob));
+    }
+
+    @Transactional
+    public SavedJobResponse updateInterviewDate(Long userId, Long savedJobId, LocalDateTime interviewAt) {
+        SavedJob savedJob = savedJobRepository.findById(savedJobId)
+                .orElseThrow(() -> new IllegalArgumentException("Saved job not found: " + savedJobId));
+
+        if (!savedJob.getUser().getUserId().equals(userId)) {
+            throw new IllegalArgumentException("Saved job not found: " + savedJobId);
+        }
+
+        savedJob.setInterviewAt(interviewAt);
+        return toResponse(savedJobRepository.save(savedJob));
+    }
+
+    public List<CalendarEventResponse> getCalendarEvents(Long userId) {
+        List<SavedJob> jobs = savedJobRepository.findByUserUserIdOrderBySavedAtDesc(userId);
+        List<CalendarEventResponse> events = new ArrayList<>();
+
+        for (SavedJob job : jobs) {
+            events.add(new CalendarEventResponse(
+                    "JOB_SAVED",
+                    job.getSavedAt(),
+                    job.getSavedJobId(),
+                    job.getTitle(),
+                    job.getCompany(),
+                    job.getApplicationStatus(),
+                    "Job saved"
+            ));
+
+            if (job.getStatusUpdatedAt() != null && !job.getStatusUpdatedAt().equals(job.getSavedAt())) {
+                events.add(new CalendarEventResponse(
+                        "STATUS_CHANGED",
+                        job.getStatusUpdatedAt(),
+                        job.getSavedJobId(),
+                        job.getTitle(),
+                        job.getCompany(),
+                        job.getApplicationStatus(),
+                        "Status changed to " + job.getApplicationStatus()
+                ));
+            }
+
+            if (job.getInterviewAt() != null) {
+                events.add(new CalendarEventResponse(
+                        "INTERVIEW",
+                        job.getInterviewAt(),
+                        job.getSavedJobId(),
+                        job.getTitle(),
+                        job.getCompany(),
+                        job.getApplicationStatus(),
+                        "Interview scheduled"
+                ));
+            }
+        }
+
+        events.sort(Comparator.comparing(CalendarEventResponse::eventAt));
+        return events;
     }
 
     private java.util.Optional<SavedJob> findExisting(Long userId, String externalJobId) {
@@ -94,7 +157,9 @@ public class SavedJobService {
                 savedJob.getRedirectUrl(),
                 savedJob.getSource(),
                 savedJob.getApplicationStatus(),
-                savedJob.getSavedAt()
+                savedJob.getSavedAt(),
+                savedJob.getStatusUpdatedAt(),
+                savedJob.getInterviewAt()
         );
     }
 }

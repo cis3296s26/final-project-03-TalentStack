@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 // REST controller for profile retrieval and updates
 @RestController
@@ -52,5 +53,17 @@ public class ProfileController {
 
         // Update the user's profile and return the updated record
         return ResponseEntity.ok(userDataService.updateProfile(userId, request));
+    }
+    @PostMapping("/photo")
+    public ResponseEntity<ProfileResponse> updateProfilePhoto(
+            @RequestParam("photo") MultipartFile photo,
+            Authentication authentication
+    ) {
+        Long userId = AuthenticatedUser.resolveUserId(authentication);
+        if (userId == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        return ResponseEntity.ok(userDataService.updateProfilePhoto(userId, photo));
     }
 }

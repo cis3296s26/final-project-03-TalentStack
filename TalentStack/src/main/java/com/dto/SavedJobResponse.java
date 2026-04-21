@@ -11,6 +11,8 @@ public record SavedJobResponse(
         String redirectUrl,
         String source,
         String applicationStatus,
-        LocalDateTime savedAt
+        LocalDateTime savedAt,
+        LocalDateTime statusUpdatedAt,
+        LocalDateTime interviewAt
 ) {
 }

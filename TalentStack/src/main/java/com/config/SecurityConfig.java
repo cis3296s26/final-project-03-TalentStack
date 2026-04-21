@@ -121,6 +121,11 @@ public class SecurityConfig {
                                 "/index.html",       // main frontend file
                                 "/login",            // login page
                                 "/signup",           // signup page
+                                "/assets/pages/login.html",
+                                "/assets/pages/register.html",
+                                "/assets/css/**",
+                                "/assets/js/**",
+                                "/assets/resources/**",
                                 "/dashboard",        // SPA route
                                 "/settings",         // SPA route
                                 "/profile",          // SPA route
@@ -133,9 +138,11 @@ public class SecurityConfig {
                         // Protected endpoints (require authenticated user)
                         .requestMatchers(
                                 "/api/logout",
+                                "/api/password",
                                 "/api/profile/**",
                                 "/api/notifications/**",
-                                "/api/jobs/**"
+                                "/api/jobs/**",
+                                "/assets/pages/**"
                         ).authenticated()
 
                         // All other requests are allowed (fallback rule)
