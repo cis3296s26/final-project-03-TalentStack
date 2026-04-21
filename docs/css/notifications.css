@@ -219,7 +219,6 @@ body {
 }
 .notif-card.removing { animation: slideOut .22s ease forwards; overflow: hidden; }
 
-<<<<<<< HEAD
 /* notifications.css - DARK MODE */
 body.dark-mode .dashboard {
   background: #121212;
@@ -341,11 +340,9 @@ body.dark-mode #toast button {
   color: white;
   border: 1px solid #2563eb;
 }
-=======
 .dashboard {
     display: block;
     max-width: 860px;
     margin: 0 auto;
     padding: 40px 24px 80px;
 }
->>>>>>> 387f483735f2802368e0b3a0144e4e44de6d1250
