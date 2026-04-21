@@ -5,9 +5,11 @@ com\talentstack\api\dto\SavedJobResponse.class
 com\talentstack\api\repo\UserProfileRepository.class
 com\talentstack\api\service\SavedJobService.class
 com\talentstack\api\controller\AuthenticatedUser.class
+com\talentstack\api\dto\UpdateInterviewDateRequest.class
 com\talentstack\api\repo\SavedJobRepository.class
 com\talentstack\api\dto\SaveJobRequest.class
 com\talentstack\api\dto\JobSearchRequest.class
+com\talentstack\api\dto\ChangePasswordRequest.class
 com\talentstack\api\dto\UpdateApplicationStatusRequest.class
 com\talentstack\api\controller\JobSearchController.class
 com\talentstack\api\model\UserProfile.class
@@ -30,4 +32,5 @@ com\talentstack\api\controller\AuthController.class
 com\talentstack\api\controller\SpaForwardController.class
 com\talentstack\api\dto\JobPreferencesResponse.class
 com\talentstack\api\service\AuthService.class
+com\talentstack\api\dto\CalendarEventResponse.class
 com\talentstack\api\dto\ProfileResponse.class
