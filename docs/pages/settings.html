@@ -78,14 +78,20 @@
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-body">
-            <div class="timeline-title">Language</div>
+            <div class="timeline-title">
+              Language:
+              <span id="displayLanguage" style="font-weight:600;">English</span>
+            </div>
             <button class="card-edit" onclick="openModal('language')">Edit</button>
           </div>
         </div>
 
         <div class="timeline-item">
           <div class="timeline-body">
-            <div class="timeline-title">Privacy</div>
+            <div class="timeline-title">
+              Privacy:
+              <span id="displayPrivacy" style="font-weight:600;">Public</span>
+            </div>
             <button class="card-edit" onclick="openModal('privacy')">Edit</button>
           </div>
         </div>
@@ -96,6 +102,7 @@
     <div class="card">
       <div class="card-header">
         <span class="card-title">Display</span>
+        <button class="card-edit" onclick="openModal('darkmode')">Edit</button>
       </div>
 
       <div class="timeline-item">
@@ -104,7 +111,6 @@
             Dark Mode:
             <span id="darkModeStatus" style="font-weight:600;">OFF</span>
           </div>
-          <button class="card-edit" onclick="openModal('darkmode')">Edit</button>
         </div>
       </div>
     </div>
@@ -171,6 +177,7 @@
   /* LOAD SAVED INFO & DARK MODE ON STARTUP */
   window.addEventListener("load", () => {
     loadDemographicsDisplay();
+    loadPreferencesDisplay();
 
     const savedMode = localStorage.getItem("darkMode") === "on";
     applyDarkMode(savedMode);
@@ -264,6 +271,7 @@
       save: () => {
         const lang = document.getElementById("languageSelect").value;
         localStorage.setItem('preferences.language', lang);
+        loadPreferencesDisplay();
         alert(`Language set to: ${lang}`);
       }
     },
@@ -273,13 +281,18 @@
       html: () => `
         <div class="form-group">
           <label class="form-label">Account Visibility</label>
-          <select class="form-input">
-            <option>Public</option>
-            <option>Private</option>
+          <select id="privacySelect" class="form-input">
+            <option value="Public">Public</option>
+            <option value="Private">Private</option>
           </select>
         </div>
       `,
-      save: () => {}
+      save: () => {
+        const privacy = document.getElementById("privacySelect").value;
+        localStorage.setItem('preferences.privacy', privacy);
+        loadPreferencesDisplay();
+        alert(`Privacy set to: ${privacy}`);
+      }
     },
 
     darkmode: {
@@ -342,10 +355,22 @@
     // Sync modal states
     if (key === "demographics") {
       setTimeout(initDemographics, 10);
-    } else if (key === "darkmode") {
+    } if (key === "darkmode") {
       const savedMode = localStorage.getItem("darkMode");
       const dropdown = document.getElementById("darkToggle");
       if (dropdown) dropdown.value = (savedMode === "on") ? "on" : "off";
+    } if (key === "language") {
+      const savedLang = localStorage.getItem('preferences.language') || 'English';
+      setTimeout(() => {
+        const dropdown = document.getElementById("languageSelect");
+        if (dropdown) dropdown.value = savedLang;
+      }, 10);
+    } else if (key === "privacy") {
+      const savedPrivacy = localStorage.getItem('preferences.privacy') || 'Public';
+      setTimeout(() => {
+        const dropdown = document.getElementById("privacySelect");
+        if (dropdown) dropdown.value = savedPrivacy;
+      }, 10);
     }
   }
 
@@ -358,6 +383,14 @@
 
     document.getElementById("displayRaces").textContent =
       races.length ? races.join(", ") : "None";
+  }
+
+  function loadPreferencesDisplay(){
+    const savedLanguage = localStorage.getItem('preferences.language') || 'English';
+    const savedPrivacy = localStorage.getItem('preferences.privacy') || 'Public';
+
+    document.getElementById("displayLanguage").textContent = savedLanguage;
+    document.getElementById("displayPrivacy").textContent = savedPrivacy;
   }
 
   function closeModal(){
