@@ -352,6 +352,13 @@
     document.getElementById("modalBody").innerHTML = modals[key].html();
     document.getElementById("modalOverlay").classList.add("open");
 
+    const footer = document.querySelector(".modal-footer");
+    if (key == "delete"){
+      footer.style.display = "none";
+    } else {
+      footer.style.display = "flex";
+    }
+
     // Sync modal states
     if (key === "demographics") {
       setTimeout(initDemographics, 10);
@@ -395,6 +402,9 @@
 
   function closeModal(){
     document.getElementById("modalOverlay").classList.remove("open");
+
+    const footer = document.querySelector(".modal-footer");
+    footer.style.display = "flex";
   }
 
   function closeModalOutside(e){
