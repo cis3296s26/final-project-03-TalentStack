@@ -16,7 +16,8 @@ Front end handles the website, Back end handles ai api calls, passing db data to
 ![This is a screenshot.](images.png)
 # How to run 
 (In Progress)
-Provide here instructions on how to use your application.   
+Provide here instructions on how to use your application. 
+TBD - docker pull njohnstmpl/talentstack:1.0.2
 
 Project Board:
 https://github.com/orgs/cis3296s26/projects/39/views/2
