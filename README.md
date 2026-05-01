@@ -3,6 +3,8 @@
 TalentStack is an AI-powered career acceleration web application designed to help students, recent graduates, career switchers, and job seekers discover career paths, prepare for opportunities, and manage job applications in one centralized platform.
 
 Unlike traditional job boards that mainly focus on active postings, TalentStack emphasizes career discovery, personalized job matching, skill mapping, application tracking, and interview preparation. The platform helps users understand how their education, skills, certifications, and experience connect to real-world career opportunities.
+<img width="1128" height="1105" alt="image" src="https://github.com/user-attachments/assets/afa8dfc2-5a6c-49a9-9884-44d3bb86efb3" />
+
 
 ## Project Description
 ```
